@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href='dist/fullcalendar/fullcalendar.css' rel='stylesheet' />
+  <link href='dist/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="css/profil.css">
+  <title>Document</title>
+</head>
+<body>
+            <!-- H EADE R -->
+
+<header class="header">
+  <nav class="nav navbar-default" role="navigation">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand header-logo"><img class="nav-img" src="dist/img/logo2.svg" width="35px" height="32px" alt="Canal 32"></a>
+      <div class="btn-group nav-button">
+        <button id="triggerRappel" type="button" class="btn popOverData nav-button" data-toggle="modal" data-target="#rappel" data-content="Créer un rappel" data-trigger="hover" data-placement="bottom"><i class="fa fa-bell-o fa-2x" aria-hidden="true"></i></button>
+
+        <!-- START MODAL WINDOW -->
+
+              <div class="modal fade" id="rappel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">Rappel</h4>
+                    </div>
+                    <div class="modal-body">
+                     <form action="rappel.php">
+                        <div class="group-form">
+                          <label for="rappel">Date de rappel :</label>
+                          <div class='input-group date' id='daterappel'>
+                           <input type='text' class="form-control" id="rappel"/>
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                           </div>
+                        </div>
+                        <div class="group-form">
+                          <label for="misc">Description :</label>
+                          <input type="textfield" class="form-control" id="misc">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary login">Me rappeler</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END MODAL WINDOW -->
+          <button type="button" class="btn dropdown-toggle popOverData nav-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-content="Afficher les notifs" data-trigger="hover" data-placement="bottom">
+            <div class="circle">
+              <div class="number"><span>10</span></div>
+            </div>
+           <i id="letter" class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+          </button>
+
+            <!-- START DROPDOWN MENU -->
+
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <button type="button" class="btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-item">
+                  <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <button type="button" class="btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-item">
+                  <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <button type="button" class="btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-item">
+                  <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <button type="button" class="btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </li>
+              </ul>
+
+          <!-- END DROPDOWN MENU -->  
+
+          <button type="button" class="btn popOverData nav-button" data-content="Paramètre" data-trigger="hover" data-placement="bottom"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></button>
+          <button type="button" class="btn popOverData nav-button" data-content="Déconnexion" data-trigger="hover" data-placement="bottom"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></button>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ****************************************************************************
+*                                C ALENDA R                                *
+****************************************************************************
+ -->
+<section class="calendar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-7 col-lg-push-5 col-sm-7">
+          <div class="wrap-calendar">
+            <div id="calendar"></div>
+          </div>
+        <div class="calendar-form">
+          <div class="btn-group">
+            <button class="btn btn-cust-r"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button class=" btn btn-cust"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button class="btn btn-cust-l">Supprimer</button>
+          </div>
+         <!-- SOMETHING WILL BE THERE SOON -->
+        </div>
+      </div>
+      <div class="col-lg-5 col-lg-pull-7 col-sm-5">
+          <div class="wrap-flex-content">
+            <h4>Objectif :</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                 60%
+              </div>
+            </div>
+            <h4>Liste client :</h4>
+            <div class="wrap-flex-form-cust">
+
+
+              <!-- ****************************************************************************
+*                                T RIGGE R  M ODA L                 *
+**************************************************************************** -->
+
+
+              <button class="btn btn-secondary btn-cust popOverData" data-placement="top" data-content="Ajouter client" data-trigger="hover" data-toggle="modal" data-target="#ajout"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+
+             <!-- ****************************************************************************
+*                                MODAL WINDOW ADD CUSTOMER START                               *
+****************************************************************************
+ -->
+
+            <div class="modal fade" id="ajout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ajouter un client</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="form-group">
+                        <label for="nom">Nom :</label>
+                        <input id="nom" type="text" class="form-control">
+                        <label for="email">Email :</label>
+                        <input type="email" class="form-control" id="email">
+                        <label for="tel">Téléphone :</label>
+                        <input type="text" class="form-control" id="tel">
+                        <label for="adresse">Adresse :</label>
+                        <input type="text" class="form-control" id="adresse">
+                        <label for="ville">Ville :</label>
+                        <input type="text" class="form-control" id="ville">
+                        <label for="cp">Code postal :</label>
+                        <input type="text" class="form-control" id="cp">
+                        <label for="misc">Divers :</label>
+                        <input type="text" class="form-control" id="misc">
+                      </div>
+                      <button type="submit" class="btn btn-primary login">Valider</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+<!-- ****************************************************************************
+*                                    END MODAL WINDOW                      *
+****************************************************************************
+ -->     
+
+
+            <form action="">
+              <select id="listCust" class="selectpicker"  data-live-search="true">
+                  <option value="4">Mustard</option>
+                  <option value="5">Ketchup</option>
+                  <option value="6">Relish</option>
+                  <option value="1">Briguitte</option>
+                  <option value="2">Georgette</option>
+                  <option value="3">Margueritte</option>
+              </select>
+               <div class="btn-group" role="group">
+                <button class="btn btn-secondary popOverData btn-cust-r" data-content="Editer les infos client" data-trigger="hover" data-placement="top"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button class="btn btn-secondary popOverData btn-cust-l" data-content="Afficher les infos client" data-trigger="hover" data-placement="top"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </div>
+            </form>
+          </div>
+          <h4>Information client :</h4>
+          <div class="wrap-flex-info-cust">
+            <div class="info-content">
+              <address>
+                <strong>Danone</strong><br>
+                Somewhere over the rainbow<br>
+                Troyes, CP 10000<br>
+                <abbr title="Phone"><i class="fa fa-phone fa-lg" aria-hidden="true"> :</i></abbr>
+                <span>03.25.01.02.03</span>
+              </address>
+              <address>
+                <strong>Pierre Dupont</strong><br>
+                <abbr title="Mobile"><i class="fa fa-mobile fa-lg" aria-hidden="true"> :</i></abbr>
+                06.01.02.03.04<br>
+                <a href="#mailto">danone@gmail.com</a>
+              </address>
+            </div>
+            <div class="content-habillage">
+              <div class="habillage">
+                <ul class="list-habillage">
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                  <li class="items-habillage"><i class="fa fa-folder item-icone" aria-hidden="true"></i><span> : logo.png</span></li>
+                </ul>
+              </div>
+              <div class="upload-files">
+                <div class="form-group">
+                  <label for="exampleInputFile">Ajouter un fichier</label>
+                  <input type="file" id="exampleInputFile">
+                  <p class="help-block">files : png, jpeg, pdf</p>
+                </div>
+            </div>
+          </div>
+         </div>
+         <h4>Liste des devis :</h4>
+         <div class="wrap-flex-form-cust">
+                      <!-- ****************************************************************************
+*                           TRIGGER MODAL WINDOW DEVIS                           *
+****************************************************************************
+ -->            
+            <a href="form_devis.html" class="btn btn-devis popOverData btn-cust"><i class="fa fa-plus" aria-hidden="true"></i></a>
+
+
+            <form action="">
+              <select name="devis" id="selectDevis" class="selectpicker" data-live-search="true" placeholder="">
+                <option value="1">Adidas</option>
+                <option value="2">Burberry</option>
+                <option value="3">Coca-cola</option>
+                <option value="4">Danone</option>
+                <option value="5">Element</option>
+                <option value="1">Adidas</option>
+                <option value="2">Burberry</option>
+              </select>
+              <div class="btn-group butCust" role="group">
+                <button class="btn btn-secondary popOverData btn-cust-r" data-content="Editer le devis" data-trigger="hover" data-placement="bottom"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></button>
+                <button class="btn btn-secondary popOverData btn-cust-l" data-content="Afficher le devis" data-trigger="hover" data-placement="bottom"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </div>
+            </form>
+         </div>
+         <h4>Factures :</h4>
+         <div class="wrap-flex-form-cust">
+           <form action="">
+              <div class="group-form">
+                <select name="facture" id="select-facture" data-live-search="true" class="selectpicker" placeholder="">
+                  <option value="1">Adidas</option>
+                  <option value="2">Burberry</option>
+                  <option value="3">Coca-cola</option>
+                  <option value="4">Danone</option>
+                  <option value="5">Element</option>
+                  <option value="1">Adidas</option>
+                  <option value="2">Burberry</option>
+                </select>
+                  <button class="btn btn-secondary popOverData btn-cust" data-content="Afficher la fiche Prod" data-trigger="hover" data-placement="bottom"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </div>
+            </form>
+         </div>
+         <h4>Fiche prod :</h4>
+         <div class="wrap-flex-form-cust">
+           <form action="">
+              <div class="group-form">
+                <select name="ficheProd" id="select-fp" class="selectpicker" data-live-search="true" placeholder="">
+                  <option value="1">Adidas</option>
+                  <option value="2">Burberry</option>
+                  <option value="3">Coca-cola</option>
+                  <option value="4">Danone</option>
+                  <option value="5">Element</option>
+                  <option value="1">Adidas</option>
+                  <option value="2">Burberry</option>
+                </select>
+                  <button class="btn btn-secondary popOverData btn-cust" data-content="Afficher la fiche video" data-trigger="hover" data-placement="bottom"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </div>
+            </form>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </section>
+ <footer class="footer">
+   <small><p class="text-center">Alexis JJQ - Florian F<p></small>
+ </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+<script src='dist/fullcalendar/lib/moment.min.js'></script>
+<script src='dist/fullcalendar/lib/jquery.min.js'></script>
+<script src='dist/fullcalendar/fullcalendar.min.js'></script>
+<script type="text/javascript" src="js/profil.js"></script>
+<script type="text/javascript">
+/*$(function () {
+    $('#rappel').data("DateTimePicker").FUNCTION()
+});*/
+// $(document).ready(function() {
+  
+    
+    
+//   });
+</script>
+</body>
+</html>

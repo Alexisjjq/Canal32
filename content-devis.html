@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="content-devis">
+<!-- ****************************************************************************
+*                           TRIGGER MODAL WINDOW DEVIS                           *
+****************************************************************************
+ -->            
+            <button class="btn btn-devis popOverData" data-placement="bottom" data-content="Ajouter un devis" data-trigger="hover" data-toggle="modal" data-target="#devis"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<!-- ****************************************************************************
+*                         MODAL WINDOWN START DEVIS                        *
+****************************************************************************
+ -->  
+
+            <div class="modal fade" id="devis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ajouter un devis</h4>
+                  </div>
+                  <div class="modal-body">
+                    <!-- FORM DEVIS START -->
+                    <form action="">
+                      <div class="form-group">
+                        <label for="entite">Entité :</label><br>
+                        <select name="entite" id="entite" class="selectpicker">
+                          <option value="1">Adidas</option>
+                          <option value="2">Burberry</option>
+                          <option value="3">Coca-cola</option>
+                          <option value="4">Danone</option>
+                          <option value="5">Element</option>
+                        </select><br>
+                        <label for="dateStart">Date de début :</label>
+                        <div class='input-group date' id='daterappel'>
+                         <input type='text' class="form-control" id="dateStart"/>
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                         </div>
+                        <label for="dateEnd">Date de fin :</label>
+                        <div class='input-group date' id='daterappel'>
+                         <input type='text' class="form-control" id="rappel"/>
+                         <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                         </span>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary login">Valider</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+<!-- ****************************************************************************
+*                          MODAL WINDOW END DEVIS                          *
+****************************************************************************
+ -->
+
+
+            <form action="">
+              <select name="devis" id="selectDevis" class="selectpicker" data-width="100px" placeholder="">
+                <option value="1">Adidas</option>
+                <option value="2">Burberry</option>
+                <option value="3">Coca-cola</option>
+                <option value="4">Danone</option>
+                <option value="5">Element</option>
+                <option value="1">Adidas</option>
+                <option value="2">Burberry</option>
+              </select>
+              <div class="btn-group butCust" role="group">
+                <button class="btn btn-secondary popOverData" data-content="Editer le devis" data-trigger="hover" data-placement="bottom"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></button>
+                <button class="btn btn-secondary popOverData" data-content="Afficher le devis" data-trigger="hover" data-placement="bottom"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </div>
+            </form>
+          </div>
+
+</body>
+</html>
+
+  <h4>Liste devis :</h4>
+          <div class="form-devis">
+
+            <!-- ****************************************************************************
+*                           TRIGGER MODAL WINDOW DEVIS                           *
+****************************************************************************
+ -->            
+            <button class="btn btn-devis popOverData" data-placement="bottom" data-content="Ajouter un devis" data-trigger="hover" data-toggle="modal" data-target="#devis"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<!-- ****************************************************************************
+*                         MODAL WINDOWN START DEVIS                        *
+****************************************************************************
+ -->  
+
+            <div class="modal fade" id="devis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ajouter un devis</h4>
+                  </div>
+                  <div class="modal-body">
+                    <!-- FORM DEVIS START -->
+                    <form action="">
+                      <div class="form-group">
+                        <label for="entite">Entité :</label><br>
+                        <select name="entite" id="entite" class="selectpicker">
+                          <option value="1">Adidas</option>
+                          <option value="2">Burberry</option>
+                          <option value="3">Coca-cola</option>
+                          <option value="4">Danone</option>
+                          <option value="5">Element</option>
+                        </select><br>
+                        <label for="dateStart">Date de début :</label>
+                        <div class='input-group date' id='daterappel'>
+                         <input type='text' class="form-control" id="dateStart"/>
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                         </div>
+                        <label for="dateEnd">Date de fin :</label>
+                        <div class='input-group date' id='daterappel'>
+                         <input type='text' class="form-control" id="rappel"/>
+                         <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                         </span>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary login">Valider</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+<!-- ****************************************************************************
+*                          MODAL WINDOW END DEVIS                          *
+****************************************************************************
+ -->
+
+
+            <form action="">
+              <select name="devis" id="selectDevis" class="selectpicker" placeholder="">
+                <option value="1">Adidas</option>
+                <option value="2">Burberry</option>
+                <option value="3">Coca-cola</option>
+                <option value="4">Danone</option>
+                <option value="5">Element</option>
+                <option value="1">Adidas</option>
+                <option value="2">Burberry</option>
+              </select>
+              <div class="btn-group butCust" role="group">
+                <button class="btn btn-secondary popOverData" data-content="Editer le devis" data-trigger="hover" data-placement="bottom"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></button>
+                <button class="btn btn-secondary popOverData" data-content="Afficher le devis" data-trigger="hover" data-placement="bottom"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </div>
+            </form>
+          </div>
