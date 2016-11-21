@@ -12,12 +12,19 @@ class Manager{
     $this->bdd = $bdd;
   }
 
-  public function verifDate($date){
-    if (!empty($date)):
-      return preg_match('#^(?=\d)(?:(?!(?:1582(?:\.|-|\/)10(?:\.|-|\/) (?:0[5-9]|1[0-4]))|(?:1752(?:\.|-|\/)09(?:\.|-|\/)(?:0[3-9]|1[0-3])))(?=(?:(?!000[04]|(?:(?:1[^0-6]|[2468][^048]|[3579][^26])00))(?:(?:\d\d)(?:[02468][048]|[13579][26]))\D02\D29)|(?:\d{4}\D(?!(?:0?[2469]|11)\D31)(?!02(?:\.|-|\/)(?:29|30))))(\d{4})([-\/.])(0\d|1[012])\2((?!00)[012]\d|3[01])(?:$|(?=\x20\d)\x20))?((?:[01]\d|2[0-3])(?::[0-5]\d){1,2})?$#', $date);
+  // A inclure dans un selecteur Articles
+  public function selectAllArticles(){
+    $message ='';
+    $reqArticles = $this->bdd->prepare('SELECT id_art, desc_art ,prix_unitaire FROM Articles');
+    if($reqArticles->execute()):
+      $tabArticles = $reqArticles->fetchAll(PDO::FETCH_ASSOC);
+      for ($i=0; $i < count($tabArticles); $i++){
+        $message .= '<option value='.$tabArticles[$i]['id_art'].'>'.$tabArticles[$i]['desc_art'].' '.$tabArticles[$i]['prix_unitaire'].'€ /h</option>';
+      }
     else :
-      return 0;
+      $message .= 'Erreur dans la requête Articles';
     endif;
+    return $message;
   }
 
   // A inclure dans un selecteur RH
@@ -77,7 +84,45 @@ class Manager{
     return $message;
   }
 
-  // Fonction de récupération des RH a integrer dans le selecteur du devis
+  // A inclure dans un selecteur Fournisseur
+  public function selectAllFournisseur(){
+    $message = '';
+    $reqFournisseur = $this->bdd->prepare('SELECT id_fournisseur, nom_fournisseur FROM Fournisseur');
+    if($reqFournisseur->execute()):
+      $tabFournisseur = $reqFournisseur->fetchALL(PDO::FETCH_ASSOC);
+      for ($i=0; $i < count($tabFournisseur); $i++):
+        $message .= '<option value='.$tabFournisseur[$i]['id_fournisseur'].'>'.$tabFournisseur[$i]['nom_fournisseur'].'</option>';
+      endfor;
+    else :
+      $message .= 'Erreur requête tout Founisseurs';
+    endif;
+    return $message;
+  }
+
+  // Soumet une date à vérification : accepte les entrées de format "YYYY(- ou /)mm(- ou /)jj" (optionnel " HH" puis ":MM" puis ":ss") au format gregorian calendar
+  public function verifDate($date){
+    if (!empty($date)):
+      return preg_match('#^(?=\d)(?:(?!(?:1582(?:\.|-|\/)10(?:\.|-|\/) (?:0[5-9]|1[0-4]))|(?:1752(?:\.|-|\/)09(?:\.|-|\/)(?:0[3-9]|1[0-3])))(?=(?:(?!000[04]|(?:(?:1[^0-6]|[2468][^048]|[3579][^26])00))(?:(?:\d\d)(?:[02468][048]|[13579][26]))\D02\D29)|(?:\d{4}\D(?!(?:0?[2469]|11)\D31)(?!02(?:\.|-|\/)(?:29|30))))(\d{4})([-\/.])(0\d|1[012])\2((?!00)[012]\d|3[01])(?:$|(?=\x20\d)\x20))?((?:[01]\d|2[0-3])(?::[0-5]\d){1,2})?$#', $date);
+    else :
+      return 0;
+    endif;
+  }
+
+  // Fonction de remplissage des selecteurs Articles apparaissannt avec le bouton d'ajout de ligne sur la page devis
+  public function jsonArticles(){
+    $reqArticles = $this->bdd->prepare('SELECT id_art, desc_art ,prix_unitaire FROM Articles');
+    if($reqArticles->execute()):
+      $tabArticles = $reqArticles->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($tabArticles as $infoArticles):
+        $prepJsonArticles[$infoArticles['id_art']]=$infoArticles['desc_art'].' '.$infoArticles['prix_unitaire'].'€ /h';
+      endforeach;
+      $tabArt['articles']=$prepJsonArticles;
+      $jsonArticles = json_encode($tabArt, JSON_UNESCAPED_UNICODE);
+      return $jsonArticles;
+    endif;
+  }
+
+  // Fonction de récupération des RH en fonction des disponibilités a integrer dans le selecteur du devis
   public function RHselector($dateStart, $dateEnd){
     $message = '';
   // On verifie que les dates soient valides (depuis le form de la page devis)
@@ -150,23 +195,21 @@ class Manager{
     return $jsonMetierUser;
   }
 
-
-  public function articleSelector(){
-    $message ='';
-    $reqArticles = $this->bdd->prepare('SELECT id_art, desc_art ,prix_unitaire FROM Articles');
-    if($reqArticles->execute()):
-      $tabArticles = $reqArticles->fetchAll(PDO::FETCH_ASSOC);
-      var_dump($tabArticles);
-      for ($i=0; $i < count($tabArticles); $i++){
-        $message .= '<option value='.$tabArticles[$i]['id_art'].'>'.$tabArticles[$i]['desc_art'].' '.$tabArticles[$i]['prix_unitaire'].' &euro;</option>';
-      }
-    else :
-      $message .= 'Erreur dans la requête Articles';
+  // Fonction de remplissage des selecteurs Fournisseur apparaissannt avec le bouton d'ajout de ligne sur la page devis
+  public function jsonFournisseur(){
+    $reqFournisseur = $this->bdd->prepare('SELECT id_fournisseur, nom_fournisseur FROM Fournisseur');
+    if($reqFournisseur->execute()):
+      $tabFournisseur = $reqFournisseur->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($tabFournisseur as $infoFournisseur):
+        $prepJsonFournisseur[$infoFournisseur['id_fournisseur']]=$infoFournisseur['nom_fournisseur'];
+      endforeach;
+      $tabFour['fournisseur']=$prepJsonFournisseur;
+      $jsonFournisseur = json_encode($tabFour, JSON_UNESCAPED_UNICODE);
+      return $jsonFournisseur;
     endif;
-    return $message;
   }
 
-  // Fonction de récupération de la liste du matériel à integrer dans le selecteur du devis
+  // Fonction de récupération de la liste du matériel en fonction des disponibilités à integrer dans le selecteur du devis
   public function materielSelector($dateStart, $dateEnd){
     $message = '';
     $reqCategorieMat = $this->bdd->prepare('SELECT categorie_mat FROM Materiel');
@@ -209,15 +252,61 @@ class Manager{
         $message .= '</optgroup>';
       endforeach;
     else:
-      $message .= 'Erreur dans la requête Catégories de métier';
+      $message .= 'Erreur dans la requête Catégories de matériel';
     endif;
     return $message;
   } // Fin materielSelector()
+
+  // Fonction de remplissage des selecteurs Materiel apparaissannt avec le bouton d'ajout de ligne sur la page devis
+  public function jsonMateriel(){
+    // Récupération de la liste des métiers
+    $reqCategorieMat = $this->bdd->prepare('SELECT categorie_mat FROM Materiel');
+    if($reqCategorieMat->execute()):
+      $tabCategorieMat = $reqCategorieMat->fetchALL(PDO::FETCH_ASSOC);
+        foreach ($tabMetier as $key => $infoMetier):
+          $prepJsonMetier[$infoMetier['id_metier']] = $infoMetier['nom_metier'].' '.$infoMetier['taux_horaire_metier'].'€ /h';
+        endforeach;
+        // tableau organisé de manière a être encodé en json $prepJsonMetier(id_metier => 'nom_metier THeuro /h')
+        $tabMetierUser['metiers']=$prepJsonMetier;
+      endif;
+    // Récupération de la liste des RH
+    $reqUtilisateur = $this->bdd->prepare('SELECT `nom_utilisateur`, `prenom_utilisateur`, `id_utilisateur` FROM Utilisateur');
+    if($reqUtilisateur->execute()):
+      $tabUtilisateur = $reqUtilisateur->fetchALL(PDO::FETCH_ASSOC);
+      foreach ($tabUtilisateur as $key => $infoUtilisateur):
+        $prepJsonUtilisateur[$infoUtilisateur['id_utilisateur']]= $infoUtilisateur['nom_utilisateur'].' '.$infoUtilisateur['prenom_utilisateur'];
+      endforeach;
+      $tabMetierUser['ressources']=$prepJsonUtilisateur;
+    endif;
+
+    $jsonMetierUser = json_encode($tabMetierUser, JSON_UNESCAPED_UNICODE);
+    return $jsonMetierUser;
+  }
+
+
 
   // Fonction qui récupère les éléments du formulaire devis, vérifie si tout est complet et si c'est le cas, met à jour la bdd
   public function ValidationDevis(array $tab){
 
   }
 
+  public function getRessources($tabRh){
+    $data = '';
+    foreach($tabRh as $value):
+      $req = $this->bdd->query('SELECT nom_utilisateur, prenom_utilisateur FROM Utilisateur WHERE id_utilisateur="'.$value.'"');
+      if(!$req):
+        $message = 'Erreur requete';
+        return $message;
+      else: 
+        $data[] = $req->fetch(PDO::FETCH_ASSOC);
+      endif;
+    endforeach;
+
+    return $data;
+  }
+
+  public function getMetier($tabRh){
+
+  }
 }
 ?>

@@ -12,7 +12,7 @@ $(document).ready(function(){
       navLinks: true, // can click day/week names to navigate views
       eventLimit: true, // allow "more" link when too many events
       events: {
-        url: 'dist/fullcalendar/demos/php/get-events.php',
+        url: '../Canal32/model/get-event.php',
         error: function() {
           $('#script-warning').show();
         }
@@ -30,9 +30,4 @@ $(document).ready(function(){
   	}).mouseout(function(){
     	$(this).find('.fa').removeClass('fa-folder-open').addClass('fa-folder');
   	});
-
-  	$('[data-toggle="tooltip"]').tooltip()
-  	$('[data-toggle="popover"]').popover()
-  	$('.popOverData').popover();
-    $('.popOverData').popover({trigger : "hover"});
 });

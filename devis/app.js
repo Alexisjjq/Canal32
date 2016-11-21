@@ -1,8 +1,14 @@
 $(document).ready(function(){
-	$('.del-btn').on('click', function(){
-		console.log('Js ok');
-		console.log($(this).parent().parent('.row'));
-		console.log($(this).parents('.row'));
-		$(this).parents('.row').remove();
+	var data = '<div class="test"><select class="fuck"><option>lol</option></select><select class="chieur"><option>Hey!</option></div>';
+	$('.trigger').on('click', function(){
+		$('.box').append(data);
+	});
+
+	$(document).on('click','.test', function(){
+			var target = $(this).find('.fuck');
+			target.empty();
+			$(target).html('<option>YEAH o//</option>');
 	});
 });
+
+	

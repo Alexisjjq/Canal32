@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href='dist/fullcalendar/fullcalendar.css' rel='stylesheet' />
-  <link href='dist/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+  <link href='dist/fullcalendar/dist/fullcalendar.css' rel='stylesheet' />
+  <link href='dist/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print' />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="css/profil.css">
   <title>Document</title>
@@ -39,7 +39,7 @@
                      <form action="rappel.php">
                         <div class="group-form">
                           <label for="rappel">Date de rappel :</label>
-                          <div class='input-group date' id='daterappel'>
+                          <div class='input-group date datePicker' id='daterappel'>
                            <input type='text' class="form-control" id="rappel"/>
                             <span class="input-group-addon">
                               <span class="glyphicon glyphicon-calendar"></span>
@@ -315,6 +315,9 @@
     </div>
   </div>
  </section>
+ <section>
+   <div id="script-warning"></div>
+ </section>
  <footer class="footer">
    <small><p class="text-center">Alexis JJQ - Florian F<p></small>
  </footer>
@@ -322,19 +325,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
-<script src='dist/fullcalendar/lib/moment.min.js'></script>
-<script src='dist/fullcalendar/lib/jquery.min.js'></script>
-<script src='dist/fullcalendar/fullcalendar.min.js'></script>
-<script type="text/javascript" src="js/profil.js"></script>
-<script type="text/javascript">
-/*$(function () {
-    $('#rappel').data("DateTimePicker").FUNCTION()
-});*/
-// $(document).ready(function() {
-  
-    
-    
-//   });
-</script>
+<script src='dist/moment/min/moment.min.js'></script>
+<script src='dist/jquery/dist/jquery.min.js'></script>
+<script src='dist/fullcalendar/dist/fullcalendar.min.js'></script>
+<script src="js/profil.js"></script>
+<script src="dist/datetimerpicker/js/bootstrap-datetimepicker.min.js"></script>
+<!-- <script src="js/callendar.js"></script> -->
+<script src="js/timepicker.js"></script>
 </body>
 </html>

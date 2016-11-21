@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var i = 0;
-
+	alert('JS OK')
 // RESSOURCES HUMAINES PART
 
 	$('#triggerRh').on('click', function(){
@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 				'<div class="row">' +
 					'<div class="col-lg-1">' +
-						'<button class="btn del-btn"><i class="fa fa-times" aria-hidden="true"></i></button>'+
+						'<button class="btn add del-btn"><i class="fa fa-times" aria-hidden="true"></i></button>'+
 					'</div>' +
 					'<div class="col-lg-11">'+
 						'<div class="row box">' +
@@ -51,7 +51,7 @@ $(document).ready(function(){
 						'</div>' +
 						'<div class="col-lg-3">'+
 							'<div class="input-group date datePicker">'+
-								'<input type="text" name="dateD" class="form-control" placeholder="Date debut" />'+
+								'<input type="text" name="dateD" class="form-control" placeholder="Date fin" />'+
 								'<span class="input-group-addon">'+
 									'<span class="glyphicon glyphicon-calendar"></span>'+
 								'</span>'+
@@ -68,7 +68,6 @@ $(document).ready(function(){
 				'</div>'
 
 			);
-			
 			$(".selectpicker").selectpicker('refresh');
 		});
 		return false;
@@ -125,22 +124,29 @@ $(document).ready(function(){
 // ARTICLES PARTS
 
 
-	$('#triggerArt').on('click', function(){
+	$('#triggerArticles').on('click', function(){
 		i++;
-		console.log(i);
-		console.log('ok');
+
 		$.get('model/reqArticles.php', function(data){
 			console.log(data);
 
-			$('#targetArt').append(
+			var data = JSON.parse(data);
+
+			function affOptArt(){
+				req = '';
+				for(var i in data.articles){
+					req = req + '<option value="'+ i +'">'+ data.articles[i] +'</option>';
+				}
+				return req;
+			};
+			
+			$('#targetArticle').append(
 				'<div class="row">'+
 				'<div class="col-lg-1">'+
 					'<button class="btn add del-btn"><i class="fa fa-times"></i></button>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
-					'<select name="articles'+i+'" class="selectpicker" data-live-search="true" data-width="100%">'+
-						// put data there
-					'</select>'+
+					'<select name="articles'+i+'" class="selectpicker" data-live-search="true" data-width="100%">'+ affOptArt() +'</select>'+
 				'</div>'+
 				'<div class="col-lg-2">'+
 					'<input type="text" class="form-control" name="prixArticles'+i+'" placeholder="Prix">'+
@@ -159,9 +165,16 @@ $(document).ready(function(){
 	$('#triggerFour').on('click', function(){
 		i++;
 		console.log(i);
-		console.log('ok');
 		$.get('model/reqFournisseur.php', function(data){
 			console.log(data);
+
+			function affOptFour(){
+				req = '';
+				for(var i in data.fournisseur){
+					req = req + '<option value="'+ i +'">'+ data.fournisseur[i] +'</option>';
+				}
+				return req;
+			};
 
 			$('#targetFour').append(
 
@@ -170,9 +183,7 @@ $(document).ready(function(){
 						'<button class="btn add del-btn"><i class="fa fa-times"></i></button>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
-					'<select name="fournisseur'+i+'" class="selectpicker form-control" data-live-search="true" data-width="100%">'+
-						// PUT DATA THERE
-					'</select>'+
+					'<select name="fournisseur'+i+'" class="selectpicker form-control" data-live-search="true" data-width="100%">'+ affOptFour()+'</select>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
 					'<input type="text" class="form-control" name="prix-facture'+i+'" placeholder="Prix facture">'+							
