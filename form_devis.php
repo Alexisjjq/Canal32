@@ -255,7 +255,7 @@
            		</div>
 			</div>
 			<div class="col-lg-3">
-				<input type="text" class="form-control" id="tempsDiff" placeholder="Temps diffusion">
+				<input type="text" class="form-control" id="tempsDiff" placeholder="Nombre diffusion">
 			</div>
 			<div class="col-lg-3">
 				<input type="text" class="form-control" id="tempsMont" placeholder="Temps montage">

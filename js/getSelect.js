@@ -1,10 +1,13 @@
 $(document).ready(function(){
-	var i = 0;
 	alert('JS OK')
+	i = 0;
+	a = 0;
+	f = 0;
 // RESSOURCES HUMAINES PART
 
 	$('#triggerRh').on('click', function(){
 		console.log('ok');
+		
 		i++;
 		// ON RECUPERE LES DONNEES DE LA REQUETES
 		$.get('model/reqSelect.php', function(data){
@@ -125,7 +128,8 @@ $(document).ready(function(){
 
 
 	$('#triggerArticles').on('click', function(){
-		i++;
+
+		a++;
 
 		$.get('model/reqArticles.php', function(data){
 			console.log(data);
@@ -134,8 +138,8 @@ $(document).ready(function(){
 
 			function affOptArt(){
 				req = '';
-				for(var i in data.articles){
-					req = req + '<option value="'+ i +'">'+ data.articles[i] +'</option>';
+				for(var a in data.articles){
+					req = req + '<option value="'+ a +'">'+ data.articles[a] +'</option>';
 				}
 				return req;
 			};
@@ -146,10 +150,10 @@ $(document).ready(function(){
 					'<button class="btn add del-btn"><i class="fa fa-times"></i></button>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
-					'<select name="articles'+i+'" class="selectpicker" data-live-search="true" data-width="100%">'+ affOptArt() +'</select>'+
+					'<select name="articles'+a+'" class="selectpicker" data-live-search="true" data-width="100%">'+ affOptArt() +'</select>'+
 				'</div>'+
 				'<div class="col-lg-2">'+
-					'<input type="text" class="form-control" name="prixArticles'+i+'" placeholder="Prix">'+
+					'<input type="text" class="form-control" name="prixArticles'+a+'" placeholder="Prix">'+
 				'</div>'+
 			'</div>'
 
@@ -163,7 +167,8 @@ $(document).ready(function(){
 
 
 	$('#triggerFour').on('click', function(){
-		i++;
+
+		f++;
 		console.log(i);
 		$.get('model/reqFournisseur.php', function(data){
 			console.log(data);
@@ -171,7 +176,7 @@ $(document).ready(function(){
 			function affOptFour(){
 				req = '';
 				for(var i in data.fournisseur){
-					req = req + '<option value="'+ i +'">'+ data.fournisseur[i] +'</option>';
+					req = req + '<option value="'+ f +'">'+ data.fournisseur[i] +'</option>';
 				}
 				return req;
 			};
@@ -183,10 +188,10 @@ $(document).ready(function(){
 						'<button class="btn add del-btn"><i class="fa fa-times"></i></button>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
-					'<select name="fournisseur'+i+'" class="selectpicker form-control" data-live-search="true" data-width="100%">'+ affOptFour()+'</select>'+
+					'<select name="fournisseur'+f+'" class="selectpicker form-control" data-live-search="true" data-width="100%">'+ affOptFour()+'</select>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
-					'<input type="text" class="form-control" name="prix-facture'+i+'" placeholder="Prix facture">'+							
+					'<input type="text" class="form-control" name="prix-facture'+f+'" placeholder="Prix facture">'+							
 				'</div>'+
 			'</div>'
 
