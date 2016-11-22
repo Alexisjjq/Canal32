@@ -87,9 +87,12 @@ body {
   .add {
     background-color: transparent;
     border-color: #ccc;
-    color: rgb(4,71,115);
+    color: #5c64c0;
   }
-  .add:hover { background-color: #d4d4d4; border-color: #8c8c8c; }
+    .add:hover { background-color: #d4d4d4; border-color: #8c8c8c; color: white; }
+
+  .del-btn { background-color: transparent; color: #cA521f; }
+    .del-btn:hover { background-color: #d4d4d4; color:white ; border-color: #8c8c8c; }
 
   .devis-submit { display: flex; flex-direction: row; justify-content: end; margin-top: 20px; }
 

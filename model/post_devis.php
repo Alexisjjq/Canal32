@@ -13,6 +13,7 @@ include('manager.php');
 	 echo '<hr>';
 	 echo $_POST['ressources'.$i];
 	 echo '<hr>';
+	 
 $tabRh = '';
 	while (!empty($_POST['ressources'.$i])) {
 		$tabRh[] = $_POST['ressources'.$i];

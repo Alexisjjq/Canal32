@@ -18,8 +18,6 @@
   	<link rel="stylesheet" href="dist/bootstrap/dist/css/bootstrap.min.css">
   	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   	<link rel="stylesheet" href="dist/bootstrap-select/dist/css/bootstrap-select.min.css">
-  	<link href='dist/fullcalendar/fullcalendar.css' rel='stylesheet' />
-  	<link href='dist/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
   	<link rel="stylesheet" href="dist/datetimerpicker/css/bootstrap-datetimepicker.min.css">
   	<link rel="stylesheet" href="css/form_devis.css">
 </head>
@@ -118,6 +116,21 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="line">
+					<label for="title">Titre :</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<input type="text" id="title" class="form-control" name="title" placeholder="Titre projet">
+			</div>
+			<div class="col-lg-9">
+				<input type="text" class="form-control" name="desProjet" placeholder="Description projet">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="line">
 					<label for="articles">Articles :</label>
 				</div>
 			</div>
@@ -132,8 +145,8 @@
 						<?= $manager->selectAllArticles();?>
 					</select>
 				</div>
-				<div class="col-lg-2">
-					<input type="text" class="form-control" id="lieuTournage" placeholder="lieux">
+				<div class="col-lg-3">
+					<input type="text" name="nbDiff" class="form-control" id="nbDiffusion" placeholder="Nombre diffusion">
 				</div>
 				<div class="col-lg-2">
 					<input type="text" class="form-control" id="prixArticles" placeholder="Prix">
@@ -246,7 +259,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				<div class='input-group date datePicker'>
            			<input type='text' class="form-control" name="dateTournage" placeholder="Date tournage" />
            		 	<span class="input-group-addon">
@@ -254,14 +267,21 @@
             		</span>
            		</div>
 			</div>
-			<div class="col-lg-3">
-				<input type="text" class="form-control" id="tempsDiff" placeholder="Nombre diffusion">
+			<div class="col-lg-4">
+				<div class='input-group date datePicker'>
+           			<input type='text' class="form-control" name="datePeriodeDebut" placeholder="Début diffusion" />
+           		 	<span class="input-group-addon">
+              			<span class="glyphicon glyphicon-calendar"></span>
+            		</span>
+           		</div>
 			</div>
-			<div class="col-lg-3">
-				<input type="text" class="form-control" id="tempsMont" placeholder="Temps montage">
-			</div>
-			<div class="col-lg-3">
-				<input type="text" class="form-control" id="tempsPreparation" placeholder="Temps de préparation">
+			<div class="col-lg-4">
+				<div class='input-group date datePicker'>
+           			<input type='text' class="form-control" name="datePeriodeFin" placeholder="Fin diffusion" />
+           		 	<span class="input-group-addon">
+              			<span class="glyphicon glyphicon-calendar"></span>
+            		</span>
+           		</div>
 			</div>
 		</div>
 		<div class="row">

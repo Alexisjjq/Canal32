@@ -290,7 +290,7 @@ class Manager{
 
   }
 
-  public function getRessources($tabRh){
+  public function getRessources(array $tabRh){
     $data = '';
     foreach($tabRh as $value):
       $req = $this->bdd->query('SELECT nom_utilisateur, prenom_utilisateur FROM Utilisateur WHERE id_utilisateur="'.$value.'"');
@@ -305,7 +305,8 @@ class Manager{
     return $data;
   }
 
-  public function getMetier($tabRh){
+  public function getMetier(){
+
 
   }
 }

@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 				'<div class="row">' +
 					'<div class="col-lg-1">' +
-						'<button class="btn add del-btn"><i class="fa fa-times" aria-hidden="true"></i></button>'+
+						'<button class="btn del-btn"><i class="fa fa-times" aria-hidden="true"></i></button>'+
 					'</div>' +
 					'<div class="col-lg-11">'+
 						'<div class="row box">' +
@@ -147,10 +147,13 @@ $(document).ready(function(){
 			$('#targetArticle').append(
 				'<div class="row">'+
 				'<div class="col-lg-1">'+
-					'<button class="btn add del-btn"><i class="fa fa-times"></i></button>'+
+					'<button class="btn del-btn"><i class="fa fa-times"></i></button>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
 					'<select name="articles'+a+'" class="selectpicker" data-live-search="true" data-width="100%">'+ affOptArt() +'</select>'+
+				'</div>'+
+				'<div class="col-lg-3">' +
+					'<input type="text" class="form-control" name="nbDiff'+a+'" placeholder="Nombre diffusion">'+
 				'</div>'+
 				'<div class="col-lg-2">'+
 					'<input type="text" class="form-control" name="prixArticles'+a+'" placeholder="Prix">'+
@@ -185,7 +188,7 @@ $(document).ready(function(){
 
 				'<div class="row">'+
 					'<div class="col-lg-1">'+
-						'<button class="btn add del-btn"><i class="fa fa-times"></i></button>'+
+						'<button class="btn del-btn"><i class="fa fa-times"></i></button>'+
 				'</div>'+
 				'<div class="col-lg-3">'+
 					'<select name="fournisseur'+f+'" class="selectpicker form-control" data-live-search="true" data-width="100%">'+ affOptFour()+'</select>'+
